@@ -135,7 +135,7 @@ function buildCharts(sample) {
         automargin: true, 
       },
       hovermode: "closest",
-      autosize: true
+      // autosize: true
     };
 
     // 3. Use Plotly to plot the data with the layout.
