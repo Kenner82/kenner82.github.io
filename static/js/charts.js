@@ -63,14 +63,13 @@ function buildCharts(sample) {
 
     //  5. Create a variable that holds the first sample in the array.
     var bbResult = bbResultArray[0];
-    console.log(bbResult);
+
 
     // 6. Create variables that hold the otu_ids, otu_labels, and sample_values.
     var bbIds = bbResult.otu_ids;
     console.log(bbIds);
 
     var bbLabels = bbResult.otu_labels;
-    console.log(bbLabels);
 
     var bbValues = bbResult.sample_values;
     console.log(bbValues);
@@ -79,19 +78,22 @@ function buildCharts(sample) {
     // Hint: Get the the top 10 otu_ids and map them in descending order  
     //  so the otu_ids with the most bacteria are last. 
 
-    // var sortedValues = bbValues.sort((a,b) => a-b).reverse().slice(0,10);
-    // console.log(sortedValues);
+    var yticks = bbIds.slice(0, 10).map(otuID => `OTU ${otuID}`).reverse();
+    console.log(yticks);
 
-    // var yticks = 
-    // console.log(yticks);
+    var xValues = bbValues.slice(0,10).reverse();
+    console.log(xValues);
 
+    var textValues = bbLabels.slice(0,10).reverse();
+    console.log(textValues);
 
     // // 8. Create the trace for the bar chart. 
     var barData = [{
-      x: 
+      x: xValues,
       y: yticks,
       type: "bar",
-      orientation: "h"
+      orientation: "h",
+      text: textValues
     }];
 
     // // 9. Create the layout for the bar chart. 
@@ -101,5 +103,22 @@ function buildCharts(sample) {
 
     // 10. Use Plotly to plot the data with the layout. 
     Plotly.newPlot("bar", barData, barLayout);
+
+
+    // 1. Create the trace for the bubble chart.
+    var bubbleData = [
+   
+    ];
+
+    // 2. Create the layout for the bubble chart.
+    var bubbleLayout = {
+  
+    };
+
+    // 3. Use Plotly to plot the data with the layout.
+    Plotly.newPlot(); 
+
+
+
   });
 }
