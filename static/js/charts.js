@@ -55,6 +55,8 @@ function buildMetadata(sample) {
 function buildCharts(sample) {
   // 2. Use d3.json to load and retrieve the samples.json file 
   d3.json("samples.json").then((data) => {
+    // Set additional variable to call in .newPlot to resize image when page size changes
+    var config = {responsive: true}
 
     // 3. Create a variable that holds the samples array. 
     var bbSamples = data.samples;
@@ -107,7 +109,7 @@ function buildCharts(sample) {
     };
 
     // 10. Use Plotly to plot the data with the layout. 
-    Plotly.newPlot("bar", barData, barLayout);
+    Plotly.newPlot("bar", barData, barLayout, config);
 
 
     // 1. Create the trace for the bubble chart.
@@ -120,7 +122,7 @@ function buildCharts(sample) {
         color: bbIds,
         size: bbValues,
         colorscale: 'Earth',
-        opacity: 0.5
+        opacity: 0.75
       }
     }];
 
@@ -135,11 +137,12 @@ function buildCharts(sample) {
         automargin: true, 
       },
       hovermode: "closest",
-      // autosize: true
+      autosize: true,
+      height: 600
     };
 
     // 3. Use Plotly to plot the data with the layout.
-    Plotly.newPlot("bubble", bubbleData, bubbleLayout); 
+    Plotly.newPlot("bubble", bubbleData, bubbleLayout, config); 
 
 
 
@@ -173,7 +176,7 @@ function buildCharts(sample) {
     };
 
     // 6. Use Plotly to plot the gauge data and layout.
-    Plotly.newPlot("gauge", gaugeData, gaugeLayout);
+    Plotly.newPlot("gauge", gaugeData, gaugeLayout, config);
 
   });
 }
